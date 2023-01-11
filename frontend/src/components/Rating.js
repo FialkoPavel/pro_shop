@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 const Rating = ({rating, text, color}) => {
+    console.log('rating, text, color', rating, text, color)
   return (
     <div>
         <i style={{ color }} className={
@@ -35,7 +36,8 @@ const Rating = ({rating, text, color}) => {
 }
 
 Rating.defaultProps = {
-    color: 'yellow'
+    color: 'yellow',
+    rating: 0
 }
 
 Rating.propTypes = {
