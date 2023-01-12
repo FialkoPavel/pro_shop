@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "PRO SHOP",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server",
@@ -20,7 +21,10 @@
   },
   "homepage": "https://github.com/FialkoPavel/pro_shop#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.3"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",
