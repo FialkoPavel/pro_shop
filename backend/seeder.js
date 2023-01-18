@@ -18,14 +18,13 @@ const importData = async() => {
         await User.deleteMany()
 
         const createdUsers = await User.insertMany(users)
-        console.log('createdUsers', createdUsers)
 
         const adminUser = createdUsers[0]._id
 
         const sampleProducts = await products.map(item => {
             return {...item, user: adminUser}
         })
-        console.log('sampleProducts', sampleProducts)
+
         await Product.insertMany(sampleProducts)
 
         console.log('Imported data'.green.bold)
