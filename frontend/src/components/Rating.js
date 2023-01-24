@@ -2,9 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 const Rating = ({rating, text, color}) => {
-    console.log('rating, text, color', rating, text, color)
   return (
-    <div>
+    <>
         <i style={{ color }} className={
             rating >= 1 ? 'fa-solid fa-star' :
             rating >= 0.5 ? 'fa-solid fa-star-half-stroke' :
@@ -31,7 +30,7 @@ const Rating = ({rating, text, color}) => {
             'fa-regular fa-star'
             }></i>
         <span>&nbsp; { text} </span>
-    </div>
+    </>
   )
 }
 

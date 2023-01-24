@@ -10,3 +10,8 @@ h3 {
   display: flex;
   justify-content: center;
 }
+
+.vertcal-align {
+  display: flex;
+  align-items: center;
+}

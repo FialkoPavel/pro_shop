@@ -16,6 +16,7 @@ router.get('/', asyncHandler(async(req, res) => {
 
 
 router.get('/:id', asyncHandler(async (req, res) => {
+    console.log('req.params.id', req.params.id, mongoose.Types.ObjectId.isValid(req.params.id))
     if(mongoose.Types.ObjectId.isValid(req.params.id)) {
         const product = await Product.findById(req.params.id)
         res.json(product)
