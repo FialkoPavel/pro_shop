@@ -23,12 +23,9 @@ const ProductScreen = () => {
         navigate(`/cart/${id}?count=${count}`)
     }
 
-
     useEffect(() => {
-     
         dispatch(productDetailAction(id))
-        
-    }, [dispatch])
+    }, [dispatch, id, count])
   
   return (
     <div>
