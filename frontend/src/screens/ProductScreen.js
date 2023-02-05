@@ -17,7 +17,7 @@ const ProductScreen = () => {
     const { id } = useParams()
     const dispatch = useDispatch()  
     const navigate = useNavigate()
-
+    
 
     const cartPageHandler = () => {
         navigate(`/cart/${id}?count=${count}`)
@@ -72,16 +72,16 @@ const ProductScreen = () => {
                         </Row>
                     </ListGroupItem>
                     {
-                        product.countInStock && 
+                        product.countInStock > 0 && 
                      <ListGroupItem>
                          <Row>
                             <Col className='vertcal-align'>Count</Col>
                             <Col>
                                 {
-                                    <Form.Control as="select" onChange={(e) => { setCount(e.target.value) }}>
+                                    <Form.Control as="select" onChange={(e) => { setCount(e.target.value) }} value={count}>
                                         {
                                             Array.from({length: product.countInStock}, (_, i) => i + 1).map(i => (
-                                                <option key={i} value={i} >
+                                                <option key={i} value={i}>
                                                     {i}
                                                 </option>
                                             ))

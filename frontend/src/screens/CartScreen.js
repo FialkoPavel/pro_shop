@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { cartReducer } from '../reducer/cartReducer'
-import { cartAction } from '../action/cartAction'
+import { cartAction, deleteCartItem } from '../action/cartAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import { Link, useNavigate } from 'react-router-dom'
@@ -21,17 +21,18 @@ const CartScreen = () => {
 
     const checkoutHandler = () => {
         navigate('/login?redirect=shipping')
-    }
+    }   
 
     const removeFromCart = (id) => {
-        console.log('delete', id);
+      dispatch(deleteCartItem(id))
     }
 
     useEffect(() => {
         if (id) {
+          console.log('adfgferwd', id);
             dispatch(cartAction(id, count))
         }
-    }, [dispatch])
+    }, [dispatch, id, count])
 
   return (
     <Row>
@@ -55,10 +56,10 @@ const CartScreen = () => {
                 <Col md={2}>${item.price}</Col>
                 <Col md={2}>
                     {
-                        <Form.Control as="select" onChange={(e) => { cartAction(item.product, e.target.value) }}>
+                        <Form.Control as="select" onChange={(e) => { cartAction(item.product, e.target.value) }} value={count}>
                             {
                                 Array.from({length: item.countInStock}, (_, i) => i + 1).map(i => (
-                                    <option key={i} value={i} >
+                                    <option key={i} value={i}>
                                         {i}
                                     </option>
                                 ))

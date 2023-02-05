@@ -4,16 +4,19 @@ import colors from 'colors'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+
 
 dotenv.config()
 
 connectDB()
 
 const app = express()
+app.use(express.json({ limit: '10mb' }))
 
 app.use((err, req, res, next) => {
 
-    const statusCode = res.status === 200 ? 500 : res.status
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode
     res.status(statusCode)
     
     res.json({
@@ -29,6 +32,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/products', productRoutes)
+
+app.use('/api/users', userRoutes)
 
 const PORT = process.env.PORT || 4000;
 
