@@ -28,15 +28,47 @@ const getUserAuth = asyncHandler(async(req, res) => {
 });
 
 const getTokenAuth = asyncHandler(async(req, res) => {
+    const user = await User.findOne({_id: req.user._id})
 
-    console.log('HERE!!!');
-
-    res.send({
-        email: 'here',
+    res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin
     })
+});
+
+const registerUser = asyncHandler(async(req, res) => {
+    const {email, password, name} = req.body;
+
+    const isUserExist = await User.findOne({email})
+    console.log('isUserExist', isUserExist);
+    if (isUserExist) {
+        res.status(400)
+        throw new Error('User already exist!')
+    } 
+
+
+    const user = await User.create({
+        name,
+        email,
+        password
+    })
+
+    if (user) {
+        res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email
+        })
+    } else {
+        res.status(404)
+        throw new Error('User not created')
+    }
 });
 
 export {
     getUserAuth,
-    getTokenAuth
+    getTokenAuth,
+    registerUser
 }
