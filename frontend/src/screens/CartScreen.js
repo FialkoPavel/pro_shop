@@ -29,7 +29,6 @@ const CartScreen = () => {
 
     useEffect(() => {
         if (id) {
-          console.log('adfgferwd', id);
             dispatch(cartAction(id, count))
         }
     }, [dispatch, id, count])
